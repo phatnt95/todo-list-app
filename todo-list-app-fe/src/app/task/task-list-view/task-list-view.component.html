@@ -1,0 +1,43 @@
+<p>task-list-view works!</p>
+<div class="contrainer">
+    <form>
+        <div class="mb-3 row">
+            <!-- <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Full text search:</label> -->
+            <div class="col-xs-3 col-sm-auto">
+                <input id="table-filtering-search" class="form-control" type="text" [formControl]="filter">
+            </div>
+            <div class="col-xs-3 col-sm-auto">
+                <button type="button" class="btn btn-primary" (click)="add();">Thêm mới</button>
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="contrainer header" scope="col">#</th>
+                <th class="contrainer header" scope="col">Task name</th>
+                <th class="contrainer header" scope="col">Type</th>
+                <th class="contrainer header" scope="col">Status</th>
+                <th class="contrainer header" scope="col">Description</th>
+                <th class="contrainer header" scope="col">Start</th>
+                <th class="contrainer header" scope="col">Due</th>
+                <th class="contrainer header" scope="col">Done</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let task of listTask; index as i">
+                <td>{{i + 1}}</td>
+                <td>{{task['task_name']}}</td>
+                <td>{{task['type']}}</td>
+                <td>{{task['status']}}</td>
+                <td>{{task['description']}}</td>
+                <td>{{task['start_date']}}</td>
+                <td>{{task['due_date']}}</td>
+                <td style="text-align: center;">
+                    <input type="checkbox" disabled [checked]="task['isDone']">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
