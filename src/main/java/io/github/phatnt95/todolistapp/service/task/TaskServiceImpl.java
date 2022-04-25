@@ -4,11 +4,15 @@ import io.github.phatnt95.todolistapp.entity.Task;
 import io.github.phatnt95.todolistapp.entity.User;
 import io.github.phatnt95.todolistapp.repository.TaskRepository;
 import io.github.phatnt95.todolistapp.repository.UserRepository;
+import io.github.phatnt95.todolistapp.utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -24,9 +28,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task save(Task task) {
-        //User owner = userRepository.getById(UUID.fromString("3c6f7df9-acd7-4507-9646-b352c6a3b6a8"));
-//        task.setTask_owner(owner);
-        return null;//taskRepository.save(task);
+        return taskRepository.save(task);
     }
 
     @Override
@@ -42,5 +44,15 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public Optional<Task> findById(Long id) {
         return taskRepository.findById(id);
+    }
+
+    @Override
+    public Optional<Set<Task>> findAllActiveTask() {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Set<Task>> findAllTaskByType(String type) {
+        return Optional.empty();
     }
 }

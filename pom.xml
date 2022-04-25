@@ -15,6 +15,7 @@
 	<description>To do list Spring boot application</description>
 	<properties>
 		<java.version>11</java.version>
+		<springdoc.version>1.2.25</springdoc.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -72,6 +73,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.fasterxml.jackson.core</groupId>-->
+<!--			<artifactId>jackson-databind</artifactId>-->
+<!--			<version>2.13.1</version>-->
+<!--		</dependency>-->
     </dependencies>
 
 	<build>
@@ -86,6 +92,26 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>cz.habarta.typescript-generator</groupId>
+				<artifactId>typescript-generator-maven-plugin</artifactId>
+				<version>2.35.1025</version>
+				<executions>
+					<execution>
+						<id>generate</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<phase>process-classes</phase>
+					</execution>
+				</executions>
+				<configuration>
+					<jsonLibrary>jackson2</jsonLibrary>
+					<classPatterns>io.github.phatnt95.todolistapp.entity.*</classPatterns>
+					<outputKind>module</outputKind>
 				</configuration>
 			</plugin>
 		</plugins>

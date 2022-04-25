@@ -1,16 +1,9 @@
 package io.github.phatnt95.todolistapp.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.*;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 /**
@@ -26,18 +19,23 @@ import java.time.LocalDate;
 public class Task extends MappedSuperEntity {
     @ManyToOne
     @JoinColumn(name = "parent_task_id")
-    private Task parent_task;
-    private String task_name;
-    private String description;
+    public Task parent_task;
+    public String task_name;
+    public String description;
 //    @JsonSerialize(using = LocalDateSerializer.class)
 //    @JsonDeserialize(using = LocalDateDeserializer.class)
 //    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private LocalDate start_date;
+public LocalDate start_date;
 //    @JsonSerialize(using = LocalDateSerializer.class)
 //    @JsonDeserialize(using = LocalDateDeserializer.class)
 //    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private LocalDate due_date;
+public LocalDate due_date;
     @OneToOne
     @JoinColumn(name = "task_owner_id")
-    private User task_owner;
+    public User task_owner;
+    @Enumerated(EnumType.STRING)
+    public EIssueType type;
+    @Enumerated(EnumType.STRING)
+    public EStatus status;
+    public Boolean isDone;
 }
